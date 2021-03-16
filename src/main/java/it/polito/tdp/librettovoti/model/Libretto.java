@@ -26,7 +26,7 @@ public class Libretto {
 		//come comporre la stringa?
 	}*/
 	//3
-	public List<Voto> listaVotiUguali(int punteggio){
+	/*public List<Voto> listaVotiUguali(int punteggio){
 		//restituisce solo i voti uguali al criterio
 		List<Voto> risultato=new ArrayList<>();
 		for(Voto v:this.voti) {
@@ -36,7 +36,7 @@ public class Libretto {
 		}
 		return risultato;
 		
-	}
+	}*/
 	//4 TODO
 	public Libretto votiUguali3(int punteggio) {
 		//restituisco il libretto formato da quei determinati voti, così ha tutte le funzionalità del libretto
@@ -47,6 +47,57 @@ public class Libretto {
 		}
 	}return risultato;
 	}
+	/**
+	 * ricerca un Voto  del corso di cui è specificato il nome
+	 * se il corso non esiste, restituisce null
+	 * @param nomeCorso
+	 * @return
+	 */
+	public Voto ricercaCorso(String nomeCorso) {
+		Voto risultato=null;
+		for(Voto v:this.voti) {
+			if(v.getNome().equals(nomeCorso)) {
+				risultato=v;
+				break;
+			}
+		}
+		return risultato;
+	}
+	//punto 3-->veridficare che non esistano duplicati
+	/**
+	 * verifica che nel libretto non ci sia lo stesso esame con la stassa valutazione
+	 * @param v
+	 * @return
+	 */
+	public boolean esisteDupicato(Voto v) {
+		boolean trovato = false;
+		for(Voto voto: this.voti) {
+			if(voto.getNome().equals(v.getNome()) && voto.getVoto()==v.getVoto()) {
+				trovato=true;
+				break;
+				
+			}
+		}
+		return trovato;
+	}
+	//punto 4-->verificare che nel libretto non ci sia lo stesso esame ma con votazione diversa
+	/**
+	 * verifica se nel libretto c'è già un voto con lo stesso esame ma valutazione diversa
+	 * @param v
+	 * @return
+	 */
+	public boolean esisteConflitto(Voto v) {
+		boolean trovato = false;
+		for(Voto voto: this.voti) {
+			if(voto.getNome().equals(v.getNome()) && voto.getVoto()!=v.getVoto()) {
+				trovato=true;
+				break;
+				
+			}
+		}
+		return trovato;
+	}
+	
 	public String toString() {
 		String s ="";
 		for(Voto v:this.voti) {

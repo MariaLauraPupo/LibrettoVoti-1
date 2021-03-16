@@ -23,8 +23,8 @@ public class TestLibretto {
 	System.out.println(libretto);
 	
 	//utilizzando il metodo 3
-	List<Voto> venticinque = libretto.listaVotiUguali(25);
-	System.out.println(venticinque);
+	/*List<Voto> venticinque = libretto.listaVotiUguali(25);
+	System.out.println(venticinque);*/
 	
 	//utilizzando il metodo 4
 	Libretto librettoventicinque = libretto.votiUguali3(25);
