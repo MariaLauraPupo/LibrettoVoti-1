@@ -1,16 +1,22 @@
 package it.polito.tdp.librettovoti.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Libretto {
 	private List<Voto> voti;
+	private Map<String, Voto> votiMap;//ogni volta  che inserisco un nuovo voto lo inserisco sia nella mappa che nella lista
 
 	public Libretto() {
 	this.voti = new ArrayList<>();
+	this.votiMap = new HashMap<>();
 	}
 	public void add(Voto v) {
 		voti.add(v);
+		votiMap.put(v.getNome(), v);
+		
 	}
 	/*metodi per stampare i voti uguali a 25*/
 	//1
@@ -54,14 +60,15 @@ public class Libretto {
 	 * @return
 	 */
 	public Voto ricercaCorso(String nomeCorso) {
-		Voto risultato=null;
+		/*Voto risultato=null;
 		for(Voto v:this.voti) {
 			if(v.getNome().equals(nomeCorso)) {
 				risultato=v;
 				break;
 			}
 		}
-		return risultato;
+		return risultato;*/ // se non faccio la Mappa
+		return this.votiMap.get(nomeCorso);
 	}
 	//punto 3-->veridficare che non esistano duplicati
 	/**
@@ -69,8 +76,8 @@ public class Libretto {
 	 * @param v
 	 * @return
 	 */
-	public boolean esisteDupicato(Voto v) {
-		boolean trovato = false;
+	public boolean esisteDuplicato(Voto v) {
+		/*boolean trovato = false;
 		for(Voto voto: this.voti) {
 			if(voto.getNome().equals(v.getNome()) && voto.getVoto()==v.getVoto()) {
 				trovato=true;
@@ -78,7 +85,15 @@ public class Libretto {
 				
 			}
 		}
-		return trovato;
+		return trovato;*/ // così se non uso la Mappa
+		//se uso la mappa invece
+		Voto trovato=this.votiMap.get(v.getNome());
+		if(trovato==null)
+			return false;
+		if(trovato.getVoto()==v.getVoto())
+			return true;
+		else
+			return false;
 	}
 	//punto 4-->verificare che nel libretto non ci sia lo stesso esame ma con votazione diversa
 	/**
@@ -87,7 +102,7 @@ public class Libretto {
 	 * @return
 	 */
 	public boolean esisteConflitto(Voto v) {
-		boolean trovato = false;
+		/*boolean trovato = false;
 		for(Voto voto: this.voti) {
 			if(voto.getNome().equals(v.getNome()) && voto.getVoto()!=v.getVoto()) {
 				trovato=true;
@@ -95,7 +110,16 @@ public class Libretto {
 				
 			}
 		}
-		return trovato;
+		return trovato;*/ //senza usare la Mappa
+		Voto trovato=this.votiMap.get(v.getNome());
+		if(trovato==null) {
+			return false;
+		}
+		if(trovato.getVoto()!=v.getVoto()) {
+			return true;
+		}
+		else
+			return false;
 	}
 	
 	public String toString() {

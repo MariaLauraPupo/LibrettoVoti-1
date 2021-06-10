@@ -29,6 +29,11 @@ public class TestLibretto {
 	//utilizzando il metodo 4
 	Libretto librettoventicinque = libretto.votiUguali3(25);
 	System.out.println(librettoventicinque);
- 
+	
+	Voto chimica = libretto.ricercaCorso("Chimica");
+	Voto chimica_doppio = new Voto("Chimica", 25, LocalDate.of(2019,7,6));
+	Voto chimica_conflitto = new Voto("Chimica", 29, LocalDate.of(2019,7,6));
+	System.out.println(chimica + " doppione di " +chimica_doppio + "? -->" + libretto.esisteDuplicato(chimica_doppio));
+	
 }
 }

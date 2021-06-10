@@ -38,7 +38,7 @@ public class FXMLController {
     @FXML
     void doInserisci(ActionEvent event) {
     	
-    	// leggi e controla i dati
+    	// leggi e controlla i dati
     	
     	String nomeEsame = txtEsame.getText();
     	if(nomeEsame.length()==0) {
